@@ -24,5 +24,8 @@ public class Main {
 
 		arr.removeFirst();
 		System.out.println(arr);
+
+		//test
+
 	}
 }
