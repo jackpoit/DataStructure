@@ -43,3 +43,30 @@ Q:泛型数组和object数组区别在哪
 
 ​	
 
+**Stack**
+
+1.线性结构  
+
+​	入栈 出栈  栈顶：只能从这一端放入 取出
+
+​	后进先出 Last in First Out(LIFO)
+
+​	Undo
+
+​	程序调用的系统栈    
+
+
+
+2. 栈的实现
+
+   通过之前编写的工具类 Array来实现  （全程通过泛型<E>）
+
+   但是因为要实现 Stack（push   pop  peek  getsize   isEmpty)
+
+   可以编写一个Stack 接口，然后定义一个实现类ArrayStack来实现Stack,
+
+   ArrayStack 有个private Array<e> array 的属性，然后通过重写Stack来实现方法，不必担心 array的其他方法泄露，因为我们通过ArrayStack类只能调用接口li里定义的方法 （array是私有的），其他方法没有调用权限。
+
+   这就是封装的好处，从用户角度看 ，支持这些操作就好，具体的底层实现，用户不关心
+
+   
