@@ -6,7 +6,7 @@ public class ArrayStack<E> implements Stack<E>{
 		array=new Array<>();
 	}
 	public ArrayStack(int capacity){
-		array=new Array<>(capacity);
+		array= new Array<>(capacity);
 	}
 
 	@Override
