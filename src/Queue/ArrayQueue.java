@@ -1,12 +1,15 @@
 package Queue;
 
-public class ArrayQueue<E> implements Queue<E>{
-    private Array<E> array;
+import stack.Array;
 
-    public ArrayQueue(int capacity) {
-        array=new Array<E>(capacity);
+public class ArrayQueue<E> implements Queue<E>{
+    private Array<E> array;  //不加private 有风险
+    public ArrayQueue(){
+        array= new Array<>();
     }
-    public ArrayQueue(){this(10);}
+    public ArrayQueue(int capacity){
+        array= new Array<>(capacity);
+    }
 
     @Override
     public int getSize() {
@@ -51,4 +54,6 @@ public class ArrayQueue<E> implements Queue<E>{
         res.append("] tail");
         return res.toString();
     }
+
+
 }
