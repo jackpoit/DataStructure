@@ -96,6 +96,14 @@ Q:泛型数组和object数组区别在哪
 
 
 
+**LinkedList**
+
+1. 节点Node
+
+   head      prev     dummyHead 
+
+   
+
 
 
 
