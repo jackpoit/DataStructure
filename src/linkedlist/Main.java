@@ -11,5 +11,10 @@ public class Main {
 		System.out.println(linkedList);
 		linkedList.addFirst(111);
 		System.out.println(linkedList);
+		linkedList.remove(2);
+		System.out.println(linkedList);
+		linkedList.removeLast();
+		linkedList.removeFirst();
+		System.out.println(linkedList);
 	}
 }

@@ -34,6 +34,9 @@ public class LinkedList<E> {
 	public int getSize() {
 		return size;
 	}
+	public boolean isEmpty(){
+		return size==0;
+	}
 
 	public void add(E e,int index){
 		if (index<0||index>size){
@@ -91,6 +94,28 @@ public class LinkedList<E> {
 		}
 		return false;
 	}
+
+	public E remove(int index){
+		if (index<0||index>size-1){
+			throw new IllegalArgumentException("Get Failed.Illegal index");
+		}
+		Node prev=dummyHead;
+		for (int i=0;i<index;i++){
+			prev=prev.next;
+		}
+		Node delNode=prev.next;
+		prev.next=delNode.next;
+		delNode.next=null; //清除内存
+		size--;
+		return delNode.e;
+	}
+	public E removeFirst(){
+		return remove(0);
+	}
+	public E removeLast(){
+		return remove(size-1);
+	}
+
 	@Override
 	public String toString(){
 		StringBuilder res=new StringBuilder();
