@@ -103,6 +103,18 @@ Q:泛型数组和object数组区别在哪
    head      prev     dummyHead 
 
    
+   
+   LinkedListStack  从head进 从head出  保证入队出队操作 O(1)的复杂度
+   
+   LinkedListQueue	
+   
+   如果用之前的链表 ,只能一端进一端出 入队出队肯定有一个操作是O(n)的复杂度,
+   
+   因此引入一个 tail节点记录尾部 ，这样入队出队都变为O(1)复杂度了
+   
+   注意 入队 出队 如果链表变成空或从空开始要注意维护 head 和tail.
+   
+   
 
 
 
