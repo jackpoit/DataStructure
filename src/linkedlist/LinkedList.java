@@ -158,10 +158,8 @@ public class LinkedList<E> {
 	}
 
 	public static void main(String[] args) {
-
 		Integer[] nums={1,2,4,5,765,7,7};
 		LinkedList<Integer> list=new LinkedList<>(nums);
-
 		System.out.println(list);
 	}
 
