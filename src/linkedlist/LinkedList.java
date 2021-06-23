@@ -1,5 +1,7 @@
 package linkedlist;
 
+import java.io.DataInputStream;
+
 public class LinkedList<E> {
 
 	private class Node{
@@ -29,6 +31,35 @@ public class LinkedList<E> {
 	public LinkedList(){
 		dummyHead=new Node(null,null);
 		size=0;
+	}
+	public LinkedList(E[] arrs){
+		if(arrs== null || arrs.length == 0)
+			throw new IllegalArgumentException("arr can not be empty");
+
+		dummyHead=new Node();
+		Node cur=dummyHead;
+		for (int i=0;i<arrs.length;i++){
+			cur.next= new Node(arrs[i]);
+			cur=cur.next;
+		}
+		size=arrs.length;
+
+//		Node head;
+//		head=new Node(arrs[0]);
+//		Node cur=head;
+//		for (int i=1;i<arrs.length;i++){
+//			cur.next=new Node(arrs[i]);
+//			cur=cur.next;
+//		}
+
+//		this.val = arr[0];
+//		ListNode cur = this;
+//		for(int i = 1 ; i < arr.length ; i ++){
+//			cur.next = new ListNode(arr[i]);
+//			cur = cur.next;
+//		}
+
+
 	}
 
 	public int getSize() {
@@ -124,6 +155,14 @@ public class LinkedList<E> {
 		}
 		res.append("NULL");
 		return res.toString();
+	}
+
+	public static void main(String[] args) {
+
+		Integer[] nums={1,2,4,5,765,7,7};
+		LinkedList<Integer> list=new LinkedList<>(nums);
+
+		System.out.println(list);
 	}
 
 }

@@ -127,6 +127,14 @@ Q:泛型数组和object数组区别在哪
    ​																		只是用来完成特定功能的
    
    
+   
+   链表：双向链表(head tail next prev)，
+   
+   ​			循环链表(尾部指向dummyHead，不再指向null)
+   
+   ​			数组链表  
+   
+   
 
 
 
