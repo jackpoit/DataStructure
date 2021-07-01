@@ -1,8 +1,6 @@
 package bst;
 
-import java.util.LinkedList;
-import java.util.Queue;
-import java.util.Stack;
+import java.util.*;
 
 //二分搜索树   此处的实现容器 要求元素不重复 而且要继承comparable(要可比才能存）
 public class BST<E extends Comparable<E>> {
@@ -211,115 +209,122 @@ public class BST<E extends Comparable<E>> {
 	}
 
 	//层序遍历
-	public void levelOrder(){
-		if (root==null){
+	public void levelOrder() {
+		if (root == null) {
 			return;
 		}
-		Queue<Node> queue=new LinkedList<>();
+		Queue<Node> queue = new LinkedList<>();
 		//add:linkedLast  offer=add
 		//remove:removeFirst  poll:unlinkedFirst  peek：first element:first
 		queue.add(root);
-		while (!queue.isEmpty()){
-			Node cur=queue.remove();
+		while (!queue.isEmpty()) {
+			Node cur = queue.remove();
 			System.out.println(cur.e);
-			if (cur.left!=null){
+			if (cur.left != null) {
 				queue.add(cur.left);
 			}
-			if (cur.right!=null){
+			if (cur.right != null) {
 				queue.add(cur.right);
 			}
 		}
 	}
+
 	// 寻找二分搜索树的最小元素(非递归）
-	public E minimumNR(){
-		if (size==0)
+	public E minimumNR() {
+		if (size == 0)
 			throw new IllegalArgumentException("BST is empty");
-		Node cur=root;
-		while (cur.left!=null){
-			cur=cur.left;
+		Node cur = root;
+		while (cur.left != null) {
+			cur = cur.left;
 		}
 		return cur.e;
 	}
+
 	// 寻找二分搜索树的最小元素
-	public E minimum(){
-		if (size==0)
+	public E minimum() {
+		if (size == 0)
 			throw new IllegalArgumentException("BST is empty");
 		return minimum(root).e;
 	}
+
 	// 返回以node为根的二分搜索树的最小值所在的节点
-	private Node minimum(Node node){
-		if (node.left==null){
+	private Node minimum(Node node) {
+		if (node.left == null) {
 			return node;
 		}
-			return minimum(node.left);
+		return minimum(node.left);
 	}
 
 	// 寻找二分搜索树的最小元素
-	public E maximum(){
-		if (size==0)
+	public E maximum() {
+		if (size == 0)
 			throw new IllegalArgumentException("BST is empty");
 		return maximum(root).e;
 	}
+
 	// 返回以node为根的二分搜索树的最小值所在的节点
-	private Node maximum(Node node){
-		if (node.right==null){
+	private Node maximum(Node node) {
+		if (node.right == null) {
 			return node;
 		}
 		return maximum(node.right);
 	}
 
 	// 从二分搜索树中删除最小值所在节点, 返回最小值
-	public E removeMin(){
-		E ret=minimum();
-		root=removeMin(root);
+	public E removeMin() {
+		E ret = minimum();
+		root = removeMin(root);
 		return ret;
 	}
+
 	// 删除掉以node为根的二分搜索树中的最小节点
 	// 返回删除节点后新的二分搜索树的根
-	private Node removeMin(Node node){
-		if (node.left==null){
+	private Node removeMin(Node node) {
+		if (node.left == null) {
 			size--;
 			return node.right;
 		}
-		node.left=removeMin(node.left);
+		node.left = removeMin(node.left);
 		return node;
 	}
 
 	// 从二分搜索树中删除最大值所在节点
-	public E removeMax(){
+	public E removeMax() {
 		E ret = maximum();
 		root = removeMax(root);
 		return ret;
 	}
+
 	// 删除掉以node为根的二分搜索树中的最大节点
 	// 返回删除节点后新的二分搜索树的根
-	private Node removeMax(Node node){
-		if (node.right==null){
+	private Node removeMax(Node node) {
+		if (node.right == null) {
 			size--;
 			return node.left;
 		}
-		node.right=removeMax(node.right);
+		node.right = removeMax(node.right);
 		return node;
 	}
 
-	public void remove(E e){
-		if (size==0)
+	public void remove(E e) {
+		if (size == 0)
 			throw new IllegalArgumentException("BST is empty");
-		root=remove(root,e);
+		root = remove(root, e);
 	}
+
 	//以node为根删除一个元素
 	//返回一个以node为根删除一个元素后的新树
-	private Node remove(Node node,E e){
-		if (node==null){
+	private Node remove(Node node, E e) {
+		if (node == null) {
 			return null;
 		}
-		if (e.compareTo(node.e)<0){
-			node.left=remove(node.left,e);
+		if (e.compareTo(node.e) < 0) {
+			node.left = remove(node.left, e);
 			return node;
-		}else if (e.compareTo(node.e)>0){
-			node.right=remove(node.right,e);
+		} else if (e.compareTo(node.e) > 0) {
+			node.right = remove(node.right, e);
 			return node;
-		}else { //e.compareTo node.e
+		} else { //e.compareTo node.e
 			if (node.left == null) {
 				size--;
 				return node.right;
@@ -327,14 +332,68 @@ public class BST<E extends Comparable<E>> {
 				size--;
 				return node.left;
 			}
-			Node successor=minimum(node.right);
-			successor.left=node.left;
-			successor.right=removeMin(node.right);
+			Node successor = minimum(node.right);
+			successor.left = node.left;
+			successor.right = removeMin(node.right);
 			return successor;
 		}
 
 	}
 
+	//floor
+	public E floor(E e) {
+		if (size() == 0) {
+			throw new IllegalArgumentException("BST is empty");
+		}
+		Node ret = floor(root, e);
+		return ret == null ? null : ret.e;
+
+	}
+
+	//在以node为根的树中找到小于e的最大值
+	private Node floor(Node node, E e) {
+		if (node == null) {    //节点为空直接返回
+			return null;
+		}
+		if (e.compareTo(node.e) <= 0) {    //e小于等于节点e 就在左子树中找ceil 因为当前节点和右子树中的元素都比e大
+			return floor(node.left, e);    //不需要判断 如果返回null就说明这个左子树没有比e小的
+		} else {            //e比节点值大， 就在右子树找 但是要判断
+			Node temp = floor(node.right, e);            //如果返回了非空node说明在右子树找到比e小的最大值了
+			return temp == null ? node : temp;            //如果为空说明没找到 就要返回当前节点即比e小的最大值
+			//存在这个节点就返回 左子树的最大值
+		}
+//		else {
+//			return node.left==null?null:maximum(node.left);
+//			//要判断一下 因为maxium 默认当前节点不为空
+//		}
+
+	}
+
+	//ceil
+	public E ceil(E e) {
+		if (size() == 0) {
+			throw new IllegalArgumentException("BST is empty");
+		}
+		Node ret = ceil(root, e);
+		return ret == null ? null : ret.e;
+	}
+
+	//在以node为根的树中找到大于e的最小值
+	private Node ceil(Node node, E e) {
+		if (node == null) {
+			return null;
+		}
+		if (e.compareTo(node.e) >= 0) {   //e大于等于当前节点e 直接在其右子树找 因为当前节点和左子树都比e小或相等
+			return ceil(node.right, e);
+		} else {    //e小于当前节点e
+			Node res = ceil(node.left, e);        //在node的左子树中找
+			return res == null ? node : res;    //找的到就返回 找不到就返回当前node即为最小的大于e的值
+		}
+//		else {				//相等不用判断了 直接归到上面
+//			return node.right==null?null:minimum(node.right);
+//
+//		}
+	}
 
 	//生出以node 为根节点，深度为depth的描述二叉树的字符串
 	private void generateString(Node node, int depth, StringBuilder res) {
@@ -366,7 +425,7 @@ public class BST<E extends Comparable<E>> {
 	public static void main(String[] args) {
 		BST<Integer> bst = new BST<>();
 //		int[] nums = {5, 3, 6, 8, 4, 2};
-		int[] nums={30,12,43,55,2,5,7,36,43,76,1,3,8,17,19,20};
+		int[] nums = {30, 12, 43, 55, 2, 5, 7, 36, 43, 76, 1, 3, 8, 17, 19, 20};
 		/////////////////
 		//      5      //
 		//    /   \    //
@@ -382,10 +441,10 @@ public class BST<E extends Comparable<E>> {
 //		bst.inOrderNR();
 //		System.out.println();
 //		bst.inOrderNR2();
-
-		bst.postOrder();
+		bst.inOrderNR();
 		System.out.println();
-		bst.postOrderNR();
+		System.out.println();
+		System.out.println(bst.ceil(25));
 
 
 	}
