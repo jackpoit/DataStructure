@@ -6,7 +6,7 @@ import java.util.*;
 public class BST<E extends Comparable<E>> {
 	private class Node {
 		public E e;
-		Node left, right;
+		public Node left, right;
 
 		public Node(E e) {
 			this.e = e;
