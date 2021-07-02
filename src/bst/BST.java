@@ -35,12 +35,12 @@ public class BST<E extends Comparable<E>> {
 	//向树中添加一个元素
 	public void add(E e) {
 		root = add(root, e);
-		size++;
 	}
 
 	//私有的递归函数 向一个树添加一个元素 返回添加后的树
 	private Node add(Node node, E e) {
 		if (node == null) {
+			size++; 			 //维护size
 			return new Node(e);
 		}
 		if (node.e.compareTo(e) < 0) {
@@ -49,6 +49,7 @@ public class BST<E extends Comparable<E>> {
 			node.left = add(node.left, e);
 		}
 		return node;//相等 不插入 直接返回  不允许重复元素
+
 	}
 
 	//查询
