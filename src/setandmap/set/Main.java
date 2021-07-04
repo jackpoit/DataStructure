@@ -1,9 +1,11 @@
-package setandmap;
+package setandmap.set;
+
+import setandmap.FileOperation;
 
 import java.util.ArrayList;
 
 public class Main {
-	private static double testSet(Set<String> set,String fileName){
+	private static double testSet(Set<String> set, String fileName){
 		long startTime=System.nanoTime();
 		System.out.println(fileName);
 		ArrayList<String> words=new ArrayList<>();

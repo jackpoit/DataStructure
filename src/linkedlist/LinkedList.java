@@ -73,9 +73,9 @@ public class LinkedList<E> {
 		if (index<0||index>size){
 			throw new IllegalArgumentException("Add Failed.Illegal index");
 		}
-		Node prve =dummyHead;//插入的前一个节点，所以是index-1;
-		// 设置虚拟头结点 初始变为-1 但是不用特殊化原来的head节点了
-		for (int i=-1;i<index-1;i++) {
+		Node prve =dummyHead;
+		// 设置虚拟头结点  不用特殊化原来的head节点了
+		for (int i=0;i<index;i++) {
 			prve=prve.next;
 		}
 		prve.next=new Node(e,prve.next);

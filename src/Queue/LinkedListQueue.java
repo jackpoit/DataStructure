@@ -39,7 +39,7 @@ public class LinkedListQueue<E> implements Queue<E>{
 
 	@Override
 	public void enqueue(E e) {
-		if (tail==null){//说明队列(链表)为空
+		if (tail==null){//说明队列(链表)为空    //也可以用 isEmpty判断 如果为空 head=tail=new Node(e);
 			tail=new Node(e);
 			head=tail;
 		}else {
@@ -57,10 +57,19 @@ public class LinkedListQueue<E> implements Queue<E>{
 		Node retNode=head;
 		head=head.next;
 		retNode.next=null;
+
+//		size--;
+//		if (isEmpty()){
+//			head=null;
+//			tail=null;
+//		}
+
 		if (head==null){
 			tail=null;// 如果head为空 说明链表为空 tail也必须要维护一下 指向空
 		}
 		size--;
+
+
 
 		return retNode.e;
 	}
@@ -82,6 +91,10 @@ public class LinkedListQueue<E> implements Queue<E>{
 			res.append(cur+"->");
 			cur=cur.next;
 		}
+//		for (Node cur=head;cur!=0;cur=cur.next){
+//			res.append(cur+"->");
+//		}
+
 		res.append("Null] tail");
 		return res.toString();
 	}

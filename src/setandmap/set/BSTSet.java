@@ -1,67 +1,67 @@
-package setandmap;
+package setandmap.set;
 
-import linkedlist.LinkedList;
+import bst.BST;
+import setandmap.FileOperation;
 
 import java.util.ArrayList;
 
-public class LinkedListSet<E> implements Set<E> {
-	private LinkedList<E> list;
-	public LinkedListSet(){
-		list=new LinkedList<>();
+public class BSTSet<E extends Comparable<E>> implements Set<E> {
+	private BST<E> bst;
+
+	public BSTSet() {
+		bst = new BST<E>();
 	}
+
 	@Override
 	public void add(E e) {
-		if (!list.contain(e)){
-			list.addFirst(e);
-		}
+		bst.add(e);
 	}
 
 	@Override
 	public void remove(E e) {
-		list.removeElement(e);
+		bst.remove(e);
 	}
 
 	@Override
 	public boolean contains(E e) {
-		return list.contain(e);
+		return bst.contain(e);
 	}
 
 	@Override
 	public int getSize() {
-		return list.getSize();
+		return bst.size();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		return list.isEmpty();
+		return bst.isEmpty();
 	}
-
 	public static void main(String[] args) {
 		System.out.println("Pride and Prejudice");
 
 		ArrayList<String> words1 = new ArrayList<>();
-		if(FileOperation.readFile("pride-and-prejudice.txt", words1)) {
+		if (FileOperation.readFile("pride-and-prejudice.txt", words1)) {
 			System.out.println("Total words: " + words1.size());
 
-			LinkedListSet<String> set1 = new LinkedListSet<>();
+			BSTSet<String> set1 = new BSTSet<>();
 			for (String word : words1)
-				set1.add(word); //O(n)
+				set1.add(word);
 			System.out.println("Total different words: " + set1.getSize());
 		}
 
 		System.out.println();
 
-
 		System.out.println("A Tale of Two Cities");
 
 		ArrayList<String> words2 = new ArrayList<>();
-		if(FileOperation.readFile("a-tale-of-two-cities.txt", words2)){
+		if (FileOperation.readFile("a-tale-of-two-cities.txt", words2)) {
 			System.out.println("Total words: " + words2.size());
-
-			LinkedListSet<String> set2 = new LinkedListSet<>();
-			for(String word: words2)
+			BSTSet<String> set2 = new BSTSet<>();
+			for (String word : words2)
 				set2.add(word);
 			System.out.println("Total different words: " + set2.getSize());
 		}
+
 	}
 }
+

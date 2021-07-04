@@ -46,7 +46,7 @@ public class LoopQueue<E> implements Queue<E>{
     public void resize(int capacity){
         E[] newArr=(E[]) new Object[capacity+1];
 //        for (int i=front;i!=tail;i=(i+1)%data.length){
-//            newArr[i>=front?i-front:i+data.length]=data[i];
+//            newArr[i>=front?i-front:i+data.length-front]=data[i];
 //        }
         for (int i=0;i<size;i++){
             newArr[i]=data[(front+i)%data.length];
