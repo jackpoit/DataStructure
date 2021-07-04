@@ -209,6 +209,28 @@ public class BST<E extends Comparable<E>> {
 
 	}
 
+	public void postOrderNR2() {
+		if (root == null)
+			return;
+
+		Stack<Node> stack = new Stack<>();
+		Node cur = root;    //cur表示当前元素(用需要压入栈的元素 来解释更好一点）
+		Node pre = null;    //pre表示刚输出的元素
+		while (cur != null || !stack.isEmpty()) { //cur不为空 就要生产  stack不为空 就要消费
+			while (cur != null) {                //生产 沿左子树一撸到底
+				stack.push(cur);
+				cur = cur.left;						//生产完 cur变为null
+			}
+			//消费
+			if (stack.peek().right == null || stack.peek().right == pre) { //只有栈顶元素的右孩子为空或者等于pre时 才可以输出
+				pre = stack.pop();
+				System.out.println(pre.e);
+			} else {
+				cur = stack.peek().right;	 //需要生产才指定 cur
+			}
+		}
+	}
+
 	//层序遍历
 	public void levelOrder() {
 		if (root == null) {
@@ -256,7 +278,7 @@ public class BST<E extends Comparable<E>> {
 		return minimum(node.left);
 	}
 
-	// 寻找二分搜索树的最小元素
+	// 寻找二分搜索树的最大元素
 	public E maximum() {
 		if (size == 0)
 			throw new IllegalArgumentException("BST is empty");
@@ -437,16 +459,8 @@ public class BST<E extends Comparable<E>> {
 		for (int i = 0; i < nums.length; i++) {
 			bst.add(nums[i]);
 		}
-//		bst.inOrder();
-//		System.out.println();
-//		bst.inOrderNR();
-//		System.out.println();
-//		bst.inOrderNR2();
-		bst.inOrderNR();
-		System.out.println();
-		System.out.println();
-		System.out.println(bst.ceil(25));
 
+		System.out.println(bst.ceil(10));
 
 	}
 
