@@ -40,7 +40,7 @@ public class BST<E extends Comparable<E>> {
 	//私有的递归函数 向一个树添加一个元素 返回添加后的树
 	private Node add(Node node, E e) {
 		if (node == null) {
-			size++; 			 //维护size
+			size++;             //维护size
 			return new Node(e);
 		}
 		if (node.e.compareTo(e) < 0) {
@@ -219,14 +219,14 @@ public class BST<E extends Comparable<E>> {
 		while (cur != null || !stack.isEmpty()) { //cur不为空 就要生产  stack不为空 就要消费
 			while (cur != null) {                //生产 沿左子树一撸到底
 				stack.push(cur);
-				cur = cur.left;						//生产完 cur变为null
+				cur = cur.left;                        //生产完 cur变为null
 			}
 			//消费
 			if (stack.peek().right == null || stack.peek().right == pre) { //只有栈顶元素的右孩子为空或者等于pre时 才可以输出
 				pre = stack.pop();
 				System.out.println(pre.e);
 			} else {
-				cur = stack.peek().right;	 //需要生产才指定 cur
+				cur = stack.peek().right;     //需要生产才指定 cur
 			}
 		}
 	}
@@ -358,9 +358,13 @@ public class BST<E extends Comparable<E>> {
 			Node successor = minimum(node.right);
 			successor.left = node.left;
 			successor.right = removeMin(node.right);
+
+//			Node successor=maximum(node.left);
+//			successor.right=node.right;
+//			successor.left=removeMax(node.left);
+
 			return successor;
 		}
-
 	}
 
 	//floor
@@ -385,11 +389,10 @@ public class BST<E extends Comparable<E>> {
 			return temp == null ? node : temp;            //如果为空说明没找到 就要返回当前节点即比e小的最大值
 			//存在这个节点就返回 左子树的最大值
 		}
-//		else {
+//		else {			//相等不用判断了 直接归到上面
 //			return node.left==null?null:maximum(node.left);
 //			//要判断一下 因为maxium 默认当前节点不为空
 //		}
-
 	}
 
 	//ceil
@@ -412,10 +415,30 @@ public class BST<E extends Comparable<E>> {
 			Node res = ceil(node.left, e);        //在node的左子树中找
 			return res == null ? node : res;    //找的到就返回 找不到就返回当前node即为最小的大于e的值
 		}
-//		else {				//相等不用判断了 直接归到上面
-//			return node.right==null?null:minimum(node.right);
-//
-//		}
+	}
+
+	//一次遍历解决floor and ceil  类型转换未解决
+	public Object[] findFloorAndCeilNR(E e){
+		E floor=null;
+		E ceil=null;
+		Node cur=root;
+		if (cur==null){
+			return null;
+		}
+		while (cur!=null){
+			if (cur.e.equals(e)){
+				floor=e;
+				ceil=e;
+				break;
+			}else if (cur.e.compareTo(e)>0){
+				ceil=cur.e;
+				cur=cur.left;
+			}else { //cur.e.compareTo(e)<0
+				floor=cur.e;
+				cur=cur.right;
+			}
+		}
+		return new Object[]{floor,ceil};
 	}
 
 	//生出以node 为根节点，深度为depth的描述二叉树的字符串
@@ -460,8 +483,15 @@ public class BST<E extends Comparable<E>> {
 			bst.add(nums[i]);
 		}
 
-		System.out.println(bst.ceil(10));
+		int e=35;
+		bst.inOrder();
+		System.out.println();
+		System.out.println(bst.ceil(e));
+		Object[] res=bst.findFloorAndCeilNR(e);
 
+		System.out.println();
+		System.out.println(res[1]);
 	}
+
 
 }
