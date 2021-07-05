@@ -1,11 +1,11 @@
 package setandmap.map;
 
 public interface Map<K,V> {
-	void add(K k,V v);
-	V remove(K k);
-	boolean contains(K k);
-	V get(K k);
-	void set(K k,V v);
+	void add(K key,V value);
+	V remove(K key);
+	boolean contains(K key);
+	V get(K key);
+	void set(K key,V newValue);
 	int getSize();
 	boolean isEmpty();
 }

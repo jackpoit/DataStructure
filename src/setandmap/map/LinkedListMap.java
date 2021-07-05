@@ -25,6 +25,11 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 		public Node() {
 			this(null, null, null);
 		}
+
+		@Override
+		public String toString() {
+			return key.toString()+":"+value.toString();
+		}
 	}
 
 	Node dummyHead;
@@ -56,21 +61,21 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public void add(K k, V v) {
-		Node node = getNode(k);
+	public void add(K key, V value) {
+		Node node = getNode(key);
 		if (node == null) {
-			dummyHead.next = new Node(k, v, dummyHead.next);
+			dummyHead.next = new Node(key, value, dummyHead.next);
 			size++;
 		} else {
-			node.value = v;
+			node.value = value;
 		}
 	}
 
 	@Override
-	public V remove(K k) {
+	public V remove(K key ) {
 		Node prev=dummyHead;
 		while (prev.next!=null){
-			if (k.equals(prev.next.key)){
+			if (key.equals(prev.next.key)){
 				break;
 			}
 			prev=prev.next;
@@ -78,7 +83,7 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 		if (prev.next!=null){
 			Node delNode=prev.next;
 			prev.next = delNode.next;
-			delNode.next=null;
+			delNode.next=null;	//释放删除元素的空间
 			size--;
 			return delNode.value;
 		}
@@ -86,22 +91,22 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public boolean contains(K k) {
-		return getNode(k) != null;
+	public boolean contains(K key) {
+		return getNode(key) != null;
 	}
 
 	@Override
-	public V get(K k) {
-		Node node = getNode(k);
+	public V get(K key) {
+		Node node = getNode(key);
 		return node == null ? null : node.value;
 	}
 
 	@Override
-	public void set(K k, V v) {
-		Node node = getNode(k);
+	public void set(K key, V newValue) {
+		Node node = getNode(key);
 		if (node == null)
-			throw new IllegalArgumentException(k + " doesn't exist!");
-		node.value = v;
+			throw new IllegalArgumentException(key + " doesn't exist!");
+		node.value = newValue;
 	}
 
 	public static void main(String[] args) {

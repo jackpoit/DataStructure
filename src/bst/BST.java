@@ -426,9 +426,9 @@ public class BST<E extends Comparable<E>> {
 			return null;
 		}
 		while (cur!=null){
-			if (cur.e.equals(e)){
-				floor=e;
-				ceil=e;
+			if (cur.e.equals(e)){//这是ceil floor 可以找自己相等的元素
+ 				floor=e;			//如果元素相等就返回e
+				ceil=e;				//如果要求找不相等的 就在cur左子树找最大值 右子树找最小值返回就是 floor和ceil了
 				break;
 			}else if (cur.e.compareTo(e)>0){
 				ceil=cur.e;
@@ -436,6 +436,7 @@ public class BST<E extends Comparable<E>> {
 			}else { //cur.e.compareTo(e)<0
 				floor=cur.e;
 				cur=cur.right;
+
 			}
 		}
 		return new Object[]{floor,ceil};
