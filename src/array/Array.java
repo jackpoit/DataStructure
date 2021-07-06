@@ -1,5 +1,7 @@
 package array;
 
+import java.util.ArrayList;
+
 public class Array<E> {
 	private int size;
 	private E[] data;
