@@ -418,28 +418,28 @@ public class BST<E extends Comparable<E>> {
 	}
 
 	//一次遍历解决floor and ceil  类型转换未解决
-	public Object[] findFloorAndCeilNR(E e){
-		E floor=null;
-		E ceil=null;
-		Node cur=root;
-		if (cur==null){
+	public Object[] findFloorAndCeilNR(E e) {
+		E floor = null;
+		E ceil = null;
+		Node cur = root;
+		if (cur == null) {
 			return null;
 		}
-		while (cur!=null){
-			if (cur.e.equals(e)){//这是ceil floor 可以找自己相等的元素
- 				floor=e;			//如果元素相等就返回e
-				ceil=e;				//如果要求找不相等的 就在cur左子树找最大值 右子树找最小值返回就是 floor和ceil了
+		while (cur != null) {
+			if (cur.e.equals(e)) {//这是ceil floor 可以找自己相等的元素
+				floor = e;            //如果元素相等就返回e
+				ceil = e;                //如果要求找不相等的 就在cur左子树找最大值 右子树找最小值返回就是 floor和ceil了
 				break;
-			}else if (cur.e.compareTo(e)>0){
-				ceil=cur.e;
-				cur=cur.left;
-			}else { //cur.e.compareTo(e)<0
-				floor=cur.e;
-				cur=cur.right;
+			} else if (cur.e.compareTo(e) > 0) {
+				ceil = cur.e;
+				cur = cur.left;
+			} else { //cur.e.compareTo(e)<0
+				floor = cur.e;
+				cur = cur.right;
 
 			}
 		}
-		return new Object[]{floor,ceil};
+		return new Object[]{floor, ceil};
 	}
 
 	//生出以node 为根节点，深度为depth的描述二叉树的字符串
@@ -484,11 +484,11 @@ public class BST<E extends Comparable<E>> {
 			bst.add(nums[i]);
 		}
 
-		int e=35;
+		int e = 35;
 		bst.inOrder();
 		System.out.println();
 		System.out.println(bst.ceil(e));
-		Object[] res=bst.findFloorAndCeilNR(e);
+		Object[] res = bst.findFloorAndCeilNR(e);
 
 		System.out.println();
 		System.out.println(res[1]);

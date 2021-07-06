@@ -28,7 +28,7 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 
 		@Override
 		public String toString() {
-			return key.toString()+":"+value.toString();
+			return key.toString() + ":" + value.toString();
 		}
 	}
 
@@ -72,18 +72,18 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 	}
 
 	@Override
-	public V remove(K key ) {
-		Node prev=dummyHead;
-		while (prev.next!=null){
-			if (key.equals(prev.next.key)){
+	public V remove(K key) {
+		Node prev = dummyHead;
+		while (prev.next != null) {
+			if (key.equals(prev.next.key)) {
 				break;
 			}
-			prev=prev.next;
+			prev = prev.next;
 		}
-		if (prev.next!=null){
-			Node delNode=prev.next;
+		if (prev.next != null) {
+			Node delNode = prev.next;
 			prev.next = delNode.next;
-			delNode.next=null;	//释放删除元素的空间
+			delNode.next = null;    //释放删除元素的空间
 			size--;
 			return delNode.value;
 		}
@@ -110,9 +110,9 @@ public class LinkedListMap<K, V> implements Map<K, V> {
 	}
 
 	public static void main(String[] args) {
-		String fileName="Pride and Prejudice";
+		String fileName = "Pride and Prejudice";
 		ArrayList<String> words = new ArrayList<>();
-		if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+		if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
 			System.out.println("Total words: " + words.size());
 
 			LinkedListMap<String, Integer> map = new LinkedListMap<>();

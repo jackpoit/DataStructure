@@ -7,9 +7,9 @@ public class Computer {
 	private String keyboard;//可选
 	private String display;//可选
 
-	public Computer(String cpu,String ram){
-		this.cpu=cpu;
-		this.ram=ram;
+	public Computer(String cpu, String ram) {
+		this.cpu = cpu;
+		this.ram = ram;
 	}
 
 	public void setUsbCount(int usbCount) {

@@ -36,6 +36,7 @@ public class BSTSet<E extends Comparable<E>> implements Set<E> {
 	public boolean isEmpty() {
 		return bst.isEmpty();
 	}
+
 	public static void main(String[] args) {
 		System.out.println("Pride and Prejudice");
 

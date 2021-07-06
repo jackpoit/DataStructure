@@ -2,15 +2,17 @@ package bst;
 
 public class BSTDup<E extends Comparable<E>> {
 	private Node root;
-	public BSTDup(){
-		root=null;
+
+	public BSTDup() {
+		root = null;
 	}
 
-	public int size(){
-		return root==null?0:root.getSize();
+	public int size() {
+		return root == null ? 0 : root.getSize();
 	}
-	public boolean isEmpty(){
-		return size()==0;
+
+	public boolean isEmpty() {
+		return size() == 0;
 	}
 
 	//向树中添加一个元素
@@ -42,9 +44,9 @@ public class BSTDup<E extends Comparable<E>> {
 			this.e = e;
 			this.left = null;
 			this.right = null;
-			this.size=1;
-			this.depth=1;
-			this.count=1;
+			this.size = 1;
+			this.depth = 1;
+			this.count = 1;
 		}
 
 		public E getE() {

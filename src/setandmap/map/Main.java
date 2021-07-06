@@ -30,12 +30,12 @@ public class Main {
 	}
 
 	public static void main(String[] args) {
-		String fileName="pride-and-prejudice";
-		LinkedListMap<String,Integer> linkedListMap=new LinkedListMap<>();
+		String fileName = "pride-and-prejudice";
+		LinkedListMap<String, Integer> linkedListMap = new LinkedListMap<>();
 		double time1 = testMap(linkedListMap, fileName);
 		System.out.println("Linked List Map: " + time1 + " s");
 		System.out.println();
-		BSTMap<String,Integer> bstMap=new BSTMap<>();
+		BSTMap<String, Integer> bstMap = new BSTMap<>();
 		double time2 = testMap(bstMap, fileName);
 		System.out.println("BST Map: " + time2 + " s");
 	}

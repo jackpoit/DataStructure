@@ -1,18 +1,21 @@
 package Queue;
 
-public class LinkedListQueue<E> implements Queue<E>{
-	private class Node{
+public class LinkedListQueue<E> implements Queue<E> {
+	private class Node {
 		public Node next;
 		public E e;
-		public Node(){
-			this(null,null);
+
+		public Node() {
+			this(null, null);
 		}
-		public Node(E e){
-			this(e,null);
+
+		public Node(E e) {
+			this(e, null);
 		}
-		public Node(E e,Node next){
-			this.next=next;
-			this.e=e;
+
+		public Node(E e, Node next) {
+			this.next = next;
+			this.e = e;
 		}
 
 		@Override
@@ -20,13 +23,16 @@ public class LinkedListQueue<E> implements Queue<E>{
 			return e.toString();
 		}
 	}
-	private Node head,tail;
+
+	private Node head, tail;
 	private int size;
-	public LinkedListQueue(){
-		head=null;
-		tail=null;
-		size=0;
+
+	public LinkedListQueue() {
+		head = null;
+		tail = null;
+		size = 0;
 	}
+
 	@Override
 	public int getSize() {
 		return size;
@@ -34,29 +40,29 @@ public class LinkedListQueue<E> implements Queue<E>{
 
 	@Override
 	public boolean isEmpty() {
-		return size==0;
+		return size == 0;
 	}
 
 	@Override
 	public void enqueue(E e) {
-		if (tail==null){//说明队列(链表)为空    //也可以用 isEmpty判断 如果为空 head=tail=new Node(e);
-			tail=new Node(e);
-			head=tail;
-		}else {
-			tail.next=new Node(e);
-			tail=tail.next;
+		if (tail == null) {//说明队列(链表)为空    //也可以用 isEmpty判断 如果为空 head=tail=new Node(e);
+			tail = new Node(e);
+			head = tail;
+		} else {
+			tail.next = new Node(e);
+			tail = tail.next;
 		}
 		size++;
 	}
 
 	@Override
 	public E dequeue() {
-		if (isEmpty()){
+		if (isEmpty()) {
 			throw new IllegalArgumentException("Cannot dequeue from an empty queue");
 		}
-		Node retNode=head;
-		head=head.next;
-		retNode.next=null;
+		Node retNode = head;
+		head = head.next;
+		retNode.next = null;
 
 //		size--;
 //		if (isEmpty()){
@@ -64,11 +70,10 @@ public class LinkedListQueue<E> implements Queue<E>{
 //			tail=null;
 //		}
 
-		if (head==null){
-			tail=null;// 如果head为空 说明链表为空 tail也必须要维护一下 指向空
+		if (head == null) {
+			tail = null;// 如果head为空 说明链表为空 tail也必须要维护一下 指向空
 		}
 		size--;
-
 
 
 		return retNode.e;
@@ -76,7 +81,7 @@ public class LinkedListQueue<E> implements Queue<E>{
 
 	@Override
 	public E getFront() {
-		if (isEmpty()){
+		if (isEmpty()) {
 			throw new IllegalArgumentException("Cannot get from an empty queue");
 		}
 		return head.e;
@@ -84,12 +89,12 @@ public class LinkedListQueue<E> implements Queue<E>{
 
 	@Override
 	public String toString() {
-		StringBuilder res=new StringBuilder();
+		StringBuilder res = new StringBuilder();
 		res.append("Queue: front[");
-		Node cur=head;
-		while (cur!=null){
-			res.append(cur+"->");
-			cur=cur.next;
+		Node cur = head;
+		while (cur != null) {
+			res.append(cur + "->");
+			cur = cur.next;
 		}
 //		for (Node cur=head;cur!=0;cur=cur.next){
 //			res.append(cur+"->");
@@ -98,12 +103,13 @@ public class LinkedListQueue<E> implements Queue<E>{
 		res.append("Null] tail");
 		return res.toString();
 	}
+
 	public static void main(String[] args) {
-		LinkedListQueue<Integer> loopQueue=new LinkedListQueue<Integer>();
-		for (int i=0;i<10;i++){
+		LinkedListQueue<Integer> loopQueue = new LinkedListQueue<Integer>();
+		for (int i = 0; i < 10; i++) {
 			loopQueue.enqueue(i);
 			System.out.println(loopQueue);
-			if (i%3==2){
+			if (i % 3 == 2) {
 				loopQueue.dequeue();
 				System.out.println(loopQueue);
 			}
