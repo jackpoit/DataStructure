@@ -110,6 +110,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 	@Override
 	public void set(K key, V newValue) {
 		Node node = getNode(root, key);
+		System.out.println(node);
 		if (node == null) {
 			throw new IllegalArgumentException(key + "does not exist!");
 		}
@@ -184,14 +185,15 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 	public static void main(String[] args) {
 		System.out.println("pride-and-prejudice");
 //		BSTMap<String, Integer> bstMap = new BSTMap<>();
-//		bstMap.set("aa", bstMap.get("aa"));				//空指针和IllegalArgumentException
+//		bstMap.set("aa", bstMap.get("aa"));
+//		System.out.println(bstMap.get("aa"));//空指针和IllegalArgumentException
 		ArrayList<String> words = new ArrayList<>();
 		if (FileOperation.readFile("pride-and-prejudice.txt", words)) {
 			System.out.println("Total words: " + words.size());
 			BSTMap<String, Integer> bstMap = new BSTMap<>();
 			for (String word : words) {
 				if (bstMap.contains(word)) {
-					bstMap.set(word, bstMap.get(word) + 1);
+					bstMap.set(word, bstMap.get(word) + 1); // 报空指针是因为没找到 get返回的是null  null+1导致的空指针
 				} else {
 					bstMap.add(word, 1);
 				}

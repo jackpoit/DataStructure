@@ -3,7 +3,7 @@ package bst;
 import java.util.*;
 
 //二分搜索树   此处的实现容器 要求元素不重复 而且要继承comparable(要可比才能存）
-public class BST<E extends Comparable<E>> {
+public class BST<E extends Comparable< ? super E>> {
 	private class Node {
 		public E e;
 		public Node left, right;
@@ -35,6 +35,11 @@ public class BST<E extends Comparable<E>> {
 	//向树中添加一个元素
 	public void add(E e) {
 		root = add(root, e);
+	}
+
+
+	private int compareTo(E e) {
+		return 1;
 	}
 
 	//私有的递归函数 向一个树添加一个元素 返回添加后的树
@@ -362,7 +367,6 @@ public class BST<E extends Comparable<E>> {
 //			Node successor=maximum(node.left);
 //			successor.right=node.right;
 //			successor.left=removeMax(node.left);
-
 			return successor;
 		}
 	}
@@ -418,7 +422,7 @@ public class BST<E extends Comparable<E>> {
 	}
 
 	//一次遍历解决floor and ceil  类型转换未解决
-	public Object[] findFloorAndCeilNR(E e) {
+	public E[] findFloorAndCeilNR(E e) {
 		E floor = null;
 		E ceil = null;
 		Node cur = root;
@@ -439,7 +443,10 @@ public class BST<E extends Comparable<E>> {
 
 			}
 		}
-		return new Object[]{floor, ceil};
+		E[] res=(E[]) new Object[2];
+		res[0]=floor;
+		res[1]=ceil;
+		return res;
 	}
 
 	//生出以node 为根节点，深度为depth的描述二叉树的字符串
@@ -472,7 +479,7 @@ public class BST<E extends Comparable<E>> {
 	public static void main(String[] args) {
 		BST<Integer> bst = new BST<>();
 //		int[] nums = {5, 3, 6, 8, 4, 2};
-		int[] nums = {30, 12, 43, 55, 2, 5, 7, 36, 43, 76, 1, 3, 8, 17, 19, 20};
+		Integer[] nums = {30, 12, 43, 55, 2, 5, 7, 36, 43, 76, 1, 3, 8, 17, 19, 20};
 		/////////////////
 		//      5      //
 		//    /   \    //
@@ -480,14 +487,14 @@ public class BST<E extends Comparable<E>> {
 		//  / \    \   //
 		// 2  4     8  //
 		/////////////////
-		for (int i = 0; i < nums.length; i++) {
-			bst.add(nums[i]);
+		for (Integer i = 0; i < nums.length; i++) {
+			bst.add((Integer) nums[i]);
 		}
 
-		int e = 35;
-		bst.inOrder();
+		Integer e = 35;
+//		bst.inOrder();
 		System.out.println();
-		System.out.println(bst.ceil(e));
+//		System.out.println(bst.ceil(e));
 		Object[] res = bst.findFloorAndCeilNR(e);
 
 		System.out.println();
