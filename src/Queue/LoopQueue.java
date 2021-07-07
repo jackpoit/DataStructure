@@ -1,6 +1,5 @@
 package Queue;
 
-import java.util.Arrays;
 
 public class LoopQueue<E> implements Queue<E> {
 	private E[] data;

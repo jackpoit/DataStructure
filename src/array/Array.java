@@ -1,7 +1,5 @@
 package array;
 
-import java.util.ArrayList;
-
 public class Array<E> {
 	private int size;
 	private E[] data;
@@ -66,6 +64,14 @@ public class Array<E> {
 			throw new IllegalArgumentException("Get failed. Index is illegal.");
 		}
 		return data[index];
+	}
+
+	public E getLast() {
+		return get(size - 1);
+	}
+
+	public E getFirst() {
+		return get(0);
 	}
 
 	// 修改index索引位置的元素为e
@@ -142,6 +148,16 @@ public class Array<E> {
 			newData[i] = data[i];
 		}
 		data = newData;
+	}
+
+	public void swap(int i, int j) {
+		if (i < 0 || j < 0 || i > size - 1 || j > size - 1) {
+			throw new IllegalArgumentException("Index is illegal.");
+		}
+		E t = data[i];
+		data[i] = data[j];
+		data[j] = t;
+
 	}
 
 

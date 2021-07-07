@@ -1,6 +1,6 @@
 package Queue;
 
-import stack.Array;
+import array.Array;
 
 public class ArrayQueue<E> implements Queue<E> {
 	private Array<E> array;  //不加private 有风险

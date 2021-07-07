@@ -1,4 +1,5 @@
 package stack;
+import array.Array;
 
 public class ArrayStack<E> implements Stack<E> {
 	private Array<E> array;  //不加private 有风险
