@@ -422,7 +422,7 @@ public class BST<E extends Comparable< ? super E>> {
 	}
 
 	//一次遍历解决floor and ceil  类型转换未解决
-	public E[] findFloorAndCeilNR(E e) {
+	public Object[] findFloorAndCeilNR(E e) {
 		E floor = null;
 		E ceil = null;
 		Node cur = root;
@@ -443,10 +443,7 @@ public class BST<E extends Comparable< ? super E>> {
 
 			}
 		}
-		E[] res=(E[]) new Object[2];
-		res[0]=floor;
-		res[1]=ceil;
-		return res;
+		return new Object[]{floor,ceil};
 	}
 
 	//生出以node 为根节点，深度为depth的描述二叉树的字符串
@@ -479,7 +476,7 @@ public class BST<E extends Comparable< ? super E>> {
 	public static void main(String[] args) {
 		BST<Integer> bst = new BST<>();
 //		int[] nums = {5, 3, 6, 8, 4, 2};
-		Integer[] nums = {30, 12, 43, 55, 2, 5, 7, 36, 43, 76, 1, 3, 8, 17, 19, 20};
+		int[] nums = {30, 12, 43, 55, 2, 5, 7, 36, 43, 76, 1, 3, 8, 17, 19, 20};
 		/////////////////
 		//      5      //
 		//    /   \    //
@@ -487,15 +484,15 @@ public class BST<E extends Comparable< ? super E>> {
 		//  / \    \   //
 		// 2  4     8  //
 		/////////////////
-		for (Integer i = 0; i < nums.length; i++) {
-			bst.add((Integer) nums[i]);
+		for (int i = 0; i < nums.length; i++) {
+			bst.add( nums[i]);
 		}
 
-		Integer e = 35;
+		int e = 35;
 //		bst.inOrder();
 		System.out.println();
 //		System.out.println(bst.ceil(e));
-		Object[] res = bst.findFloorAndCeilNR(e);
+		Object[] res =  bst.findFloorAndCeilNR(e);
 
 		System.out.println();
 		System.out.println(res[1]);
