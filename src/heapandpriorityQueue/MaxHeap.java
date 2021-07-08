@@ -13,7 +13,15 @@ public class MaxHeap<E extends Comparable<E>> {
 	public MaxHeap() {
 		data = new Array<E>();
 	}
-
+	public MaxHeap(E[] arr){
+		data=new Array<>(arr);
+		if (arr.length!=1) {		//因为parent 传入0会抛异常 所以要判断下
+			for (int i = parent(arr.length - 1); i >= 0; i--) {
+				siftDown(i);
+			}
+		}
+		//这个就是heapify  初始化堆  时间复杂度是O(n)  因为n/4个要下沉一次 n/8需要下沉2次  n/2*k 需要下沉2*(k-2)次 加起来就是O(n/2)就是O(n)
+	}
 	public int size() {
 		return data.getSize();
 	}
@@ -78,7 +86,6 @@ public class MaxHeap<E extends Comparable<E>> {
 //		data.set(0,data.removeLast());
 //		siftDown(0);
 //		return ret;
-
 	}
 
 	//下沉
@@ -94,11 +101,14 @@ public class MaxHeap<E extends Comparable<E>> {
 			} else {
 				break;   ///大于最大的节点--满足堆的条件就不换  之后也不需要换了 直接break!!别忘了
 			}
-
 		}
-
-
 	}
-
+	// 取出堆中的最大元素，并且替换成元素e
+	public E replace(E e){
+		E ret=findMax();
+		data.set(0,e);
+		siftDown(0);
+		return ret;
+	}
 
 }
