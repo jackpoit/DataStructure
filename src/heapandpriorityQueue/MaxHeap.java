@@ -18,7 +18,7 @@ public class MaxHeap<E extends Comparable<E>> {
 		if (arr.length!=1) {		//因为parent 传入0会抛异常 所以要判断下
 			for (int i = parent(arr.length - 1); i >= 0; i--) {
 				siftDown(i);
-			}
+			}						//非叶子节点要下沉
 		}
 		//这个就是heapify  初始化堆  时间复杂度是O(n)  因为n/4个要下沉一次 n/8需要下沉2次  n/2*k 需要下沉2*(k-2)次 加起来就是O(n/2)就是O(n)
 	}
