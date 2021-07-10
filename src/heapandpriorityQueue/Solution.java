@@ -28,13 +28,6 @@ public class Solution {
 		// 但是lambda参数(o1,o2)作为隐式参数(就是调用者) 就要用类名::非静态方法(这样参数就可以作为调用者了)
 		//如  Employee类的比较   emp->emp.getName()  就可以简写成Employee::getName
 
-		//优先队列与TreeSet的区别
-		//优先队列允许重复元素(父元素大于等于子元素)   内部无序  应用 需要求最大或最小值的场景(就是本题 在入队时把优先级最小的要剔除）
-		//(内部是最大/最小堆基于数组实现的） (头和尾很好找)
-		//TreeSet去重(基于二叉树）   内部有序   应用需要找出集合中大于等于某个数值的最小值(ceiling/floor)
-		// 但找最大最小元素不好找(内部是树结构 头和尾不太好找)
-		//
-
 		for (int key:map.keySet()){
 			if (queue.size()<k){
 				queue.add(key);
@@ -51,12 +44,30 @@ public class Solution {
 		return res;
 	}
 
-
 	public static void main(String[] args) {
 
 		int[] nums = {1, 1, 1, 2, 2, 3};
 		int k = 2;
 		System.out.println((Arrays.toString((new Solution()).topKFrequent(nums, k))));
 	}
-
 }
+
+//优先队列与TreeSet的区别
+//优先队列允许重复元素(父元素大于等于子元素)   内部无序  应用 需要求最大或最小值的场景(就是本题 在入队时把优先级最小的要剔除）
+//(内部是最大/最小堆基于数组实现的） (头和尾很好找)
+//O(1) for getting min/max heap    O(logn) for heap to offer;      O(logn) for remove
+
+
+//TreeSet去重(基于二叉树）   内部有序   应用需要找出集合中大于等于某个数值的最小值(ceiling/floor)
+// 但找最大最小元素不好找(内部是树结构 头和尾不太好找)
+
+//The reason why we want to use tree set/map instead of heap is
+//because the update index(which is not min/max) function in heap is difficult,
+// and we should keep track of a hashmap to record the value and index.
+//
+//优先队列的优势：get max/min, peek() is O(1)
+//
+//TreeMap/Set的优势: update or delete 任意number是O(logn)
+//
+//If some problems can be solved by using priorityQueue, it must be solved by using treeset/map
+//
