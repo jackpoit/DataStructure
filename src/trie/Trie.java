@@ -45,27 +45,26 @@ public class Trie {
 			size++;
 		}
 	}
-	public void addR(String word){
-		addR(root,word);
+
+	public void addR(String word) {
+		addR(root, word);
 	}
+
 	//在node节点中添加word
-	private void addR(Node node,String word){
-		if (word.length()==0){   	//当word="" 说明添加完了在判断 当前的node是最后一个字母的节点
-			 if (!node.isWord){		//不要想错了
-			 	node.isWord=true;
-			 	size++;
-			 }
-			 return;
+	private void addR(Node node, String word) {
+		if (word.length() == 0) {    //当word="" 说明添加完了在判断 当前的node是最后一个字母的节点
+			if (!node.isWord) {        //不要想错了
+				node.isWord = true;
+				size++;
+			}
+			return;
 		}
-		char c=word.charAt(0);
-		if (node.next.get(c)==null)
-			node.next.put(c,new Node());
+		char c = word.charAt(0);
+		if (node.next.get(c) == null)
+			node.next.put(c, new Node());
 
-		addR(node.next.get(c),word.substring(1));	//"a".substring==""
+		addR(node.next.get(c), word.substring(1));    //"a".substring==""
 	}
-
-
-
 
 
 	// 查询单词word是否在Trie中
@@ -79,22 +78,48 @@ public class Trie {
 		}
 		return cur.isWord;
 	}
-	public boolean containsR(String word){
-		return containsR(root,word);
+
+	public boolean containsR(String word) {
+		return containsR(root, word);
 	}
+
 	//在node节点查找word
-	private boolean containsR(Node node,String word){
-		if (word.length()==0)
+	private boolean containsR(Node node, String word) {
+		if (word.length() == 0)
 			return node.isWord;
-		char c=word.charAt(0);
-		if (node.next.get(c)==null)
+		char c = word.charAt(0);
+		if (node.next.get(c) == null)
 			return false;
-		return containsR(node.next.get(c),word.substring(1));
+		return containsR(node.next.get(c), word.substring(1));
+	}
+
+	public boolean containsR1(String word) {
+		return containsR1(root, word,0);
+	}
+	private boolean containsR1(Node node, String word,int index) {
+		if (index==word.length())
+			return node.isWord;
+		char c = word.charAt(index);
+		if (node.next.get(c) == null)
+			return false;
+		return containsR1(node.next.get(c), word,index+1);
+	}
+
+	public boolean isPrefix(String word) {
+		Node cur = root;
+		for (int i = 0; i < word.length(); i++) {
+			char c = word.charAt(i);
+			if (cur.next.get(c) == null)
+				return false;
+			cur = cur.next.get(c);
+		}
+		return true;
+
 	}
 
 
 	public static void main(String[] args) {
-		Trie trie=new Trie();
+		Trie trie = new Trie();
 		trie.addR("aaa");
 		trie.addR("bbb");
 		trie.addR("ccc");
@@ -103,9 +128,10 @@ public class Trie {
 		trie.add("panda");
 		trie.add("asaweq");
 		System.out.println(trie.getSize());
-		String word="herry";
+		String word = "pan";
 		System.out.println(trie.containsR(word));
 		System.out.println(trie.contains(word));
+		System.out.println(trie.containsR1(word));
 
 	}
 }
