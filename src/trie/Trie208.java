@@ -1,6 +1,5 @@
 package trie;
 
-import setandmap.map.Map;
 
 import java.util.TreeMap;
 
