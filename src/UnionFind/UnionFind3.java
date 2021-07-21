@@ -2,23 +2,30 @@ package UnionFind;
 
 /**
  * Created with IntelliJ IDEA.
- *	Quick Union 第二版Union-Find
- *	使用一个数组构建一棵指向父节点的树
+ * 第三版 Union Find
+ *
+ *
  * @Author: jackpoit
- * @Date: 2021/07/21/10:32
+ * @Date: 2021/07/21/20:18
  * @Description:
  */
-public class UnionFind2 implements UF {
-	private int[] parent;
+public class UnionFind3 implements UF{
+	private int[] parent;  // parent[i]表示第一个元素所指向的父节点
+	private int[] sz;   // sz[i]表示以i为根的集合中元素个数
+
 
 	//parent数组 索引表示元素 值表示元素的父节点
-	public UnionFind2(int size) {
+	public UnionFind3(int size) {
 		parent = new int[size];
+		sz=new int[size];
 		//初始化每个元素父节点指向自己 每一个元素都是一个根元素
 		for (int i = 0; i < size; i++) {
 			parent[i] = i;
+			sz[i]=1;
 		}
 	}
+
+
 
 	@Override
 	public int getSize() {
@@ -56,6 +63,18 @@ public class UnionFind2 implements UF {
 		if (pRoot == qRoot) {
 			return;
 		}
-		parent[pRoot]=qRoot;
+
+
+		// 根据两个元素所在树的元素个数不同判断合并方向
+		// 将元素个数少的集合合并到元素个数多的集合上
+		//这样可以适当的减少树的深度
+		if (sz[pRoot]>sz[qRoot]){
+			parent[qRoot]=pRoot;
+			sz[pRoot]+=sz[qRoot];
+			//同时要维护sz
+		}else {  //sz[pRoot]<=sz[qRoot]
+			parent[pRoot]=qRoot;
+			sz[qRoot]+=sz[pRoot];
+		}
 	}
 }

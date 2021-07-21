@@ -27,5 +27,5 @@ public interface UF {
 	 * @param p 元素索引
 	 * @param q 元素索引
 	 */
-	void unionElement(int p, int q);
+	void unionElements(int p, int q);
 }

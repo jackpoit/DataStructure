@@ -45,7 +45,7 @@ public class UnionFind1 implements UF{
 	//合并p和q元素的所属集合
 	//O(n)的复杂度
 	@Override
-	public void unionElement(int p, int q) {
+	public void unionElements(int p, int q) {
 		int pId=find(p);
 		int qId=find(q);
 		//pId qId表示p q元素所属的集合
