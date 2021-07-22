@@ -38,7 +38,7 @@ public class Main {
 	public static void main(String[] args) {
 
 		int size = 100000;
-		int m = 10000000;
+		int m = 100000000;
 
 		UnionFind1 uf1 = new UnionFind1(size);
 		System.out.println("UnionFind1 : " + testUF(uf1, m) + " s");
@@ -49,5 +49,10 @@ public class Main {
 		UnionFind3 uf3 = new UnionFind3(size);
 		System.out.println("UnionFind3 : " + testUF(uf3, m) + " s");
 
+		UnionFind4 uf4 = new UnionFind4(size);
+		System.out.println("UnionFind4 : " + testUF(uf4, m) + " s");
+
+		UnionFind5 uf5 = new UnionFind5(size);
+		System.out.println("UnionFind5 : " + testUF(uf5, m) + " s");
 	}
 }

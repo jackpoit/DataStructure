@@ -1,22 +1,23 @@
 package UnionFind;
 
 /**
- * @Author: jackpoit
- * @Date: 2021/07/21/20:18
- * @Description: 第三版 Union Find
+ * @Author: rua
+ * @Date: 2021/7/22
+ * @Description: 第4版 Union Find
  */
-public class UnionFind3 implements UF{
-	private int[] parent;  // parent[i]表示第一个元素所指向的父节点
-	private int[] sz;   // sz[i]表示以i为根的集合中元素个数
+public class UnionFind4 implements UF {
 
-	//parent数组 索引表示元素 值表示元素的父节点
-	public UnionFind3(int size) {
+	private int[] parent;    // parent[i]表示第i个元素指向的父节点
+	private int[] rank;    // rank[i]表示以i为根的集合所表示的树的层数
+
+
+	public UnionFind4(int size) {
 		parent = new int[size];
-		sz=new int[size];
+		rank = new int[size];
 		//初始化每个元素父节点指向自己 每一个元素都是一个根元素
 		for (int i = 0; i < size; i++) {
 			parent[i] = i;
-			sz[i]=1;
+			rank[i] = 1;
 		}
 	}
 
@@ -57,18 +58,15 @@ public class UnionFind3 implements UF{
 			return;
 		}
 
-		// 根据两个元素所在树的元素个数不同判断合并方向
-		// 将元素个数少的集合合并到元素个数多的集合上
-		//这样可以适当的减少树的深度
-
-		if(sz[pRoot] < sz[qRoot]){
-			parent[pRoot] = qRoot;
-			sz[qRoot] += sz[pRoot];
-			//同时要维护sz
-		}
-		else{ // sz[qRoot] <= sz[pRoot]
+		//根据2个元素根元素的rank值判断合并方向
+		//将rank值低的合并到rank值高的上面
+		if (rank[pRoot] > rank[qRoot]) {
 			parent[qRoot] = pRoot;
-			sz[pRoot] += sz[qRoot];
+		} else if (rank[pRoot] < rank[qRoot]) {
+			parent[pRoot] = qRoot;
+		} else { //rank[pRoot] = rank[qRoot]
+			parent[qRoot]=pRoot;
+			rank[pRoot]+=1;
 		}
 	}
 }
