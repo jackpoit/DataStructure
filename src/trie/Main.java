@@ -1,6 +1,6 @@
 package trie;
 
-import setandmap.FileOperation;
+import util.FileOperation;
 import setandmap.set.BSTSet;
 
 import java.util.ArrayList;

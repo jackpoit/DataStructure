@@ -1,6 +1,6 @@
 package setandmap.map;
 
-import setandmap.FileOperation;
+import util.FileOperation;
 
 import java.util.ArrayList;
 

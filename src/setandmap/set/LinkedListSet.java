@@ -1,7 +1,7 @@
 package setandmap.set;
 
 import linkedlist.LinkedList;
-import setandmap.FileOperation;
+import util.FileOperation;
 
 import java.util.ArrayList;
 

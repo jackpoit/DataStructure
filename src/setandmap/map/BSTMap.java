@@ -1,6 +1,6 @@
 package setandmap.map;
 
-import setandmap.FileOperation;
+import util.FileOperation;
 
 import java.util.ArrayList;
 
@@ -109,7 +109,7 @@ public class BSTMap<K extends Comparable<K>, V> implements Map<K, V> {
 	@Override
 	public void set(K key, V newValue) {
 		Node node = getNode(root, key);
-		System.out.println(node);
+//		System.out.println(node);
 		if (node == null) {
 			throw new IllegalArgumentException(key + "does not exist!");
 		}
