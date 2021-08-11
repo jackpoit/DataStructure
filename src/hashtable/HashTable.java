@@ -40,18 +40,19 @@ public class HashTable<K, V> {
 	}
 
 	public void add(K key, V value) {
-
 		TreeMap<K, V> map = hashtable[hash(key)];
-		if (!map.containsKey(key)) {
+		if (map.containsKey(key)) {
+			map.put(key, value);
+		} else {
+			map.put(key, value);
 			size++;
 			if (size > upperTol * M && capacityIndex + 1 < capacity.length) {
 				capacityIndex++;
 				resize(capacity[capacityIndex]);
 			}
 		}
-		map.put(key, value);
-
 	}
+
 
 	public V remove(K key) {
 		TreeMap<K, V> map = hashtable[hash(key)];
@@ -90,14 +91,14 @@ public class HashTable<K, V> {
 			newHashtable[i] = new TreeMap<>();
 		}
 
-		this.M=newM;
+		this.M = newM;
 		for (TreeMap<K, V> map : hashtable) {
 			for (K key : map.keySet()) {
-				newHashtable[hash(key)].put(key,map.get(key));
+				newHashtable[hash(key)].put(key, map.get(key));
 			}
 		}
 
-		this.hashtable=newHashtable;
+		this.hashtable = newHashtable;
 
 	}
 }
